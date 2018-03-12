@@ -19,6 +19,8 @@ Execute the following command to create a new Gradle project:
 
     gradle init
 
+_Note that Gradle doesn't know how to do much on it's own, and will download lots of other jar files and plugins to execute various tasks._
+
 This creates a few starter files & directories in your project:
 
     ├── build.gradle
@@ -78,17 +80,21 @@ Turn it into a Spring Boot project
 ----------------------------------
 In order to quickly make a web service, we'll use [Spring Boot](https://projects.spring.io/spring-boot).
 
-Tell Gradle that we're going to be using Spring Boot by adding the following to the _top_ of your `build.gradle` file.
+Tell Gradle that we're going to be using Spring Boot by adding the [Spring Boot Gradle Plugin](https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/gradle-plugin/reference/html/#getting-started) to the _top_ of your `build.gradle` file.
 
     plugins {
         id 'org.springframework.boot' version '2.0.0.RELEASE'
     }
 
+You also need to add the following plugin directly after the `java` plugin:
+
+    apply plugin: 'io.spring.dependency-management'
+
 If you run `./gradlew tasks` again, you'll notice that there is a new `bootRun` task. We'll use this to start the Spring Boot application in a few steps.
 
 the `plugins` entry also tells Gradle to use the specified spring-boot version for any other dependencies that we add to the project.
 
-Next, the following to your `build.gradle` file:
+Next, add the following to your `build.gradle` file:
 
     repositories {
         mavenCentral()
@@ -104,4 +110,5 @@ The `dependencies` section tells Gradle that we are going to add the specified d
   * group id     - `org.springframework.boot`
   * artifact id  - `spring-boot-starter-web`
   * version      - Gradle resolves this automatically because of the `plugins` section from above.
+
 
