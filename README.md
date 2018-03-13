@@ -75,7 +75,6 @@ From now on, we'll combine these two tasks to ensure we start with an empty buil
 
     ./gradlew clean build
 
-
 Turn it into a Spring Boot project
 ----------------------------------
 In order to quickly make a web service, we'll use [Spring Boot](https://projects.spring.io/spring-boot).
@@ -111,4 +110,29 @@ The `dependencies` section tells Gradle that we are going to add the specified d
   * artifact id  - `spring-boot-starter-web`
   * version      - Gradle resolves this automatically because of the `plugins` section from above.
 
+All that is remaining to have a working Spring Boot application is to have an entry point for the application. This is done by creating a class with a `main` method. Create this class in `src/main/java/com/chikli/example/SpringBootApplicationExample.java`. By default, Gradle will look for source code under `src/main/java`:
+
+    package com.chikli.example;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+    @EnableAutoConfiguration
+    public class SpringBootApplicationExample {
+
+        public static void main(String[] args) {
+            SpringApplication.run(SpringBootApplicationExample.class, args);
+        }
+    }
+
+The [`@EnableAutoConfiguration` annotation](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html) will perform a bunch of sensible defaults based on the jars that it finds in your classpath.
+
+You can now start the Spring Boot application by executing `./gradlew bootRun`. Spring will search your classpath for an `Application`. i.e. a class with a `main` method and annotated with `@EnableAutoConfiguration` or `@SpringBootApplication`
+
+In the console output, you'll see that a Tomcat server will have started up on port 8080. The bad news is that your fancy new Spring Boot application doesn't do anything yet.
+
+You can press `control-C` to kill the application.
+
+Add a Web Service Endppoint
+---------------------------
 
