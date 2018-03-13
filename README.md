@@ -137,8 +137,8 @@ In the console output, you'll see that a Tomcat server will have started up on p
 
 You can press `control-C` to kill the application.
 
-Add a Web Service Endppoint
----------------------------
+Add a Web Service Endpoint
+--------------------------
 Our final step is to add a web service endpoint. The simplest way to do this is to just enhance our existing class to contain the Web Service functionality. In practice, you'd probably want to create separate classes to contain your services.
 
 Enhance the existing file so it looks like this:
