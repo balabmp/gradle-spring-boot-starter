@@ -1,13 +1,12 @@
 This tutorial will walk you through creating a simple Spring Boot application integrated with Gradle. All of the code in the example is also included in this repository.
 
-
 Install the Development Platform
 --------------------------------
 * Install [Java](http://www.oracle.com/technetwork/java/javase/overview/index.html)
 
 Install the Build Tool
 ----------------------
-[Gradle](https://gradle.org) is...
+[Gradle](https://gradle.org) is a tool that can be used to easily create repeatable builds. It will compile code, run tests, create deployment artifacts and much more.
 
 Install it following the instructions here: https://gradle.org/install/
 
@@ -132,6 +131,8 @@ The [`@EnableAutoConfiguration` annotation](https://docs.spring.io/spring-boot/d
 
 You can now start the Spring Boot application by executing `./gradlew bootRun`. Spring will search your classpath for an application (i.e. a class with a `main` method and annotated with `@EnableAutoConfiguration` or `@SpringBootApplication`).
 
+_Note: Gradle tasks have dependencies on other tasks, so executing `bootRun` for example will also execute `build`, thus, we really only need to execute the last task in the chain.
+
 In the console output, you'll see that a Tomcat server will have started up on port 8080. The bad news is that your fancy new Spring Boot application doesn't do anything yet.
 
 You can press `control-C` to kill the application.
@@ -165,12 +166,12 @@ Enhance the existing file so it looks like this:
 
 The [`@RestController` annotation](https://docs.spring.io/spring/docs/current/javadoc-api/index.html?org/springframework/web/bind/annotation/RestController.html) tells spring that this class will have some methods that map to incoming requests.
 
-The [`@RequestMapping` annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html) simple maps an endpoint to a java method.
+The [`@RequestMapping` annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html) simply maps an HTTP GET request to a java method. The content of the HTTP Response will be whatever the method returns.
 
 Now execute `./gradlew bootRun` again and you'll see the mapping being created in the console output. Something like:
 
     2018-03-12 20:23:30.103  INFO 42096 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cool-endpoint]}" onto public java.lang.String com.chikli.example.SpringBootApplicationExample.coolWebServiceMethodName()
 
-Finally, you can open up your browser and go to `http://localhost:8080/cool-endpoint`.
+Finally, you can open up your browser and go to http://localhost:8080/cool-endpoint .
 
 You should now be in a great place to expand this application and conquer the world! Enjoy!
