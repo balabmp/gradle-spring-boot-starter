@@ -52,9 +52,15 @@ Run this command to see what tasks are currently available with your project
 
 Notice that there are no tasks to actually build the project.
 
-We can fix this by telling Gradle that this is going to be a java project. Add the following to your `build.gradle`:
+We can fix this by telling Gradle that this is going to be a java project. Add the following to the _top_ of your `build.gradle`:
 
-    apply plugin: 'java'
+    plugins {
+        id 'java'
+    }
+
+You don't need to specify a version of this plugin, since it is considered a  [Core Plugin](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block)
+
+Note that you may see other guides that use the `apply plugin: 'java'` syntax. This is the [legacy style](https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application) of applying plugins and can be used interchangeably with the newer syntax.
 
 Now run `./gradlew tasks` again and notice the new tasks -- most notable `clean` and `build`
 
@@ -81,15 +87,10 @@ Turn it into a Spring Boot project
 ----------------------------------
 In order to quickly make a web service, we'll use [Spring Boot](https://projects.spring.io/spring-boot).
 
-Tell Gradle that we're going to be using Spring Boot by adding the [Spring Boot Gradle Plugin](https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/gradle-plugin/reference/html/#getting-started) to the _top_ of your `build.gradle` file.
+Tell Gradle that we're going to be using Spring Boot by adding the [Spring Boot Gradle Plugin](https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/gradle-plugin/reference/html/#getting-started) to the `plugins` block of your `build.gradle` file.
 
-    plugins {
         id 'org.springframework.boot' version '2.0.0.RELEASE'
-    }
-
-You also need to add the following plugin directly after the `java` plugin:
-
-    apply plugin: 'io.spring.dependency-management'
+        id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 
 If you run `./gradlew tasks` again, you'll notice that there is a new `bootRun` task. We'll use this to start the Spring Boot application in a few steps.
 
