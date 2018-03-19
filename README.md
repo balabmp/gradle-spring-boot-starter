@@ -132,7 +132,7 @@ The [`@EnableAutoConfiguration` annotation](https://docs.spring.io/spring-boot/d
 
 You can now start the Spring Boot application by executing `./gradlew bootRun`. Spring will search your classpath for an application (i.e. a class with a `main` method and annotated with `@EnableAutoConfiguration` or `@SpringBootApplication`).
 
-_Note: Gradle tasks have dependencies on other tasks, so executing `bootRun` for example will also execute `build`, thus, we really only need to execute the last task in the chain.
+_Note: Gradle tasks have dependencies on other tasks, so executing `bootRun` for example will also execute `build`, thus, we really only need to execute the last task in the chain._
 
 In the console output, you'll see that a Tomcat server will have started up on port 8080. The bad news is that your fancy new Spring Boot application doesn't do anything yet.
 
