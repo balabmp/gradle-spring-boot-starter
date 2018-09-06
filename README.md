@@ -89,8 +89,8 @@ In order to quickly make a web service, we'll use [Spring Boot](https://projects
 
 Tell Gradle that we're going to be using Spring Boot by adding the [Spring Boot Gradle Plugin](https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/gradle-plugin/reference/html/#getting-started) to the `plugins` block of your `build.gradle` file.
 
-        id 'org.springframework.boot' version '2.0.0.RELEASE'
-        id 'io.spring.dependency-management' version '1.0.4.RELEASE'
+        id 'org.springframework.boot' version '2.0.4.RELEASE'
+        id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 
 If you run `./gradlew tasks` again, you'll notice that there is a new `bootRun` task. We'll use this to start the Spring Boot application in a few steps.
 
@@ -118,9 +118,9 @@ All that is remaining to have a working Spring Boot application is to have an en
     package com.chikli.example;
 
     import org.springframework.boot.SpringApplication;
-    import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    @EnableAutoConfiguration
+    @SpringBootApplication
     public class SpringBootApplicationExample {
 
         public static void main(String[] args) {
@@ -128,7 +128,7 @@ All that is remaining to have a working Spring Boot application is to have an en
         }
     }
 
-The [`@EnableAutoConfiguration` annotation](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html) will perform a bunch of sensible defaults based on the jars that it finds in your classpath.
+The [`@SpringBootApplication` annotation](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html) will perform a bunch of sensible defaults based on the jars that it finds in your classpath.
 
 You can now start the Spring Boot application by executing `./gradlew bootRun`. Spring will search your classpath for an application (i.e. a class with a `main` method and annotated with `@EnableAutoConfiguration` or `@SpringBootApplication`).
 
@@ -140,18 +140,18 @@ You can press `control-C` to kill the application.
 
 Add a Web Service Endpoint
 --------------------------
-Our final step is to add a web service endpoint. The simplest way to do this is to just enhance our existing class to contain the Web Service functionality. In practice, you'd probably want to create separate classes to contain your services.
+Our final step is to add a web service endpoint. The simplest way to do this is to just enhance our existing class to contain the Web Service functionality. In practice, you'd probably want to create a separate class to contain your controller.
 
 Enhance the existing file so it looks like this:
 
     package com.chikli.example;
 
     import org.springframework.boot.SpringApplication;
-    import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
     import org.springframework.web.bind.annotation.RequestMapping;
     import org.springframework.web.bind.annotation.RestController;
 
-    @EnableAutoConfiguration
+    @SpringBootApplication
     @RestController
     public class SpringBootApplicationExample {
 
